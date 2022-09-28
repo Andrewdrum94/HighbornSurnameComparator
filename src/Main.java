@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -12,7 +13,23 @@ public class Main {
         people.add(new Person("James", "Black", 50));
         printList(people);
         System.out.println();
-        people.sort(new HighbornSurnameComparator());
+        Comparator<Person> highBorn = (o1, o2) -> {
+            int partsSurnameO1 = o1.getSurname().split("-").length;
+            int partsSurnameO2 = o2.getSurname().split("-").length;
+            int highBorn1 = 3;
+            if (partsSurnameO1 >= highBorn1 && partsSurnameO2 >= highBorn1) {
+                return Integer.compare(o1.getAge(), o2.getAge());
+            }
+            if (partsSurnameO1 > partsSurnameO2) {
+                return 1;
+            } else if (partsSurnameO1 < partsSurnameO2) {
+                return -1;
+            } else {
+                return Integer.compare(o1.getAge(), o2.getAge());
+            }
+        };
+
+        people.sort(highBorn);
         printList(people);
     }
 
