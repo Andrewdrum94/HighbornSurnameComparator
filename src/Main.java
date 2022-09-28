@@ -10,9 +10,13 @@ public class Main {
         people.add(new Person("John", "Sam-White-Grig", 50));
         people.add(new Person("Nick", "Mitchel-Howard", 25));
         people.add(new Person("James", "Black", 50));
+        people.add(new Person("Petya", "Suslikov-Zaytsev", 8));
         printList(people);
         System.out.println();
         people.sort(new HighbornSurnameComparator());
+        printList(people);
+        people.removeIf(person -> (person.getAge() < 18));
+        System.out.println();
         printList(people);
     }
 
